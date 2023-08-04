@@ -20,7 +20,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('main')->with('login','success');
         }
-        return back()->with('login_error','Invalid username or password.');
+        return back()->withErrors('Invalid username or password.');
     }
 
     public function logout(Request $request){

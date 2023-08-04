@@ -7,10 +7,15 @@
     <title> MAIN SCREEN </title>
 </head>
 <body>
-<a>  WELCOME TO MAIN SCREEN </a>
 <form action="{{ route('logout') }}" method="POST">
     @csrf
-    <button type="submit">Logout</button>
+    <p align="right"> <button type="submit">Logout</button> </p>
 </form>
+<a>  WELCOME TO MAIN SCREEN </a>
+<form action="{{ route('addUser') }}">
+    @csrf
+    <button type="submit">Add User</button>
+</form>
+
 </body>
 </html>
