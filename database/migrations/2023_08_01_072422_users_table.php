@@ -8,11 +8,12 @@ class UsersTable extends Migration
 {
     public function up()
     {
-        Schema::create("Users", function (Blueprint $table){
+        Schema::create("users", function (Blueprint $table){
             $table -> id();
             $table -> string("username")->unique();
-            $table -> string("userTitle")->unique();
-            $table -> string("password")->unique();
+            $table -> string("userTitle");
+            $table -> string("password");
+            $table -> softDeletes();
             $table -> timestamps();
         });
     }

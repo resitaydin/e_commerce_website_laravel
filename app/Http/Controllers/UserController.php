@@ -3,32 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
-class UserController extends Controller
+class userController extends Controller
 {
-    public function checkLogin(Request $request){
-        $credentials = $request->validate([
-            'username'      => 'required|alphaNum',
+
+    public function addUser(Request $request){
+       
+        $validated = $request->validate([
+            'username'      => 'required|alphaNum | unique:users',  // must be unique for 'users' database to avoid duplication.
+            'userTitle'     => 'required',
             'password'      => 'required|min:6',
-        ],
-        [
-            'username.required' => 'Please enter a username.',
-            'password.required' => 'Please enter your password.'
         ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('main')->with('login','success');
+        $validated['password'] = Hash::make($validated['password']);
+        $user = User::create($validated);
+
+        if(!$user){
+            return back()->withErrors('e');
         }
-        return back()->withErrors('Invalid username or password.');
+        return redirect()->route('main')->with('success', 'User has been successfully added.');
     }
 
-    public function logout(Request $request){
-        Auth::logout();
+    public function listUsers(){
+        $allUsers = User::all();
+        return view('listUsers', ['users' => $allUsers]);
+    }
 
-        $request->session()->invalidate();
+    public function editUser(){
+        return view('editUser');
+    }
 
-        $request->session()->regenerateToken();
-        return redirect('/');
+    public function deleteUser(){
+        return view('deleteUser');
+    }
+
+    public function deleteUsers(Request $request){
+     
+        $selectedUsers = $request->input('selectedUsers', []);
+
+        User::whereIn('id', $selectedUsers)->delete();
+
+       return redirect()->back();
+
     }
 }
