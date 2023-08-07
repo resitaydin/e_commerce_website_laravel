@@ -8,14 +8,11 @@
     </div>
     @endif
 <body>
-<form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <p align="right"> <button type="submit">Logout</button> </p>
-</form>
+    <a href="{{ route('logout') }}"> <p align="right"> Log Out </p> </a>
 <a>  WELCOME TO MAIN SCREEN </a> <br>
 
-<a href="{{ route('addUser') }}"> Add User </a> <br>
-<a href="{{ route('userList') }}"> List Users </a>
+<a href="{{ route('showAddUserPage') }}"> Add User </a> <br>
+<a href="{{ route('showUserListPage') }}"> List Users </a>
 
 </body>
 </html>

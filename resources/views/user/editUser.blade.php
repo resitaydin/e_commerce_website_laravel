@@ -12,7 +12,7 @@
         <p> {{$errors->first()}}</p>
     @endif
     
-    <form method="POST" action= "{{route('updateUser', ['id' => $user->id])}}">
+    <form method="POST" action= "{{route('editUser', ['id' => $user->id])}}">
         @csrf 
         @method ('PUT')
         <div class="add-user-form">

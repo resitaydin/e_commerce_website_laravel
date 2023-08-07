@@ -12,7 +12,7 @@
         <p> {{$errors->first()}}</p>
     @endif
     
-    <form method="POST" action="{{ route('saveAddUser') }}">
+    <form method="POST" action="{{ route('addUser') }}">
         @csrf 
         <div class="add-user-form">
             <label for="username">Username</label>

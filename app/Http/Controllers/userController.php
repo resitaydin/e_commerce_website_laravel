@@ -27,21 +27,24 @@ class userController extends Controller
         return redirect()->route('main')->with('success', 'User has been successfully added.');
     }
 
+    public function showAddUserPage() {
+        return view('user/addUser');
+    }
+
+    // listUsers page.
     public function listUsers(){
         $allUsers = User::all();
-        return view('listUsers', ['users' => $allUsers]);
+        return view('user/listUsers', ['users' => $allUsers]);
     }
 
-    public function editUser($id){
+    // editUser page
+    public function showEditUserPage($id){
         $user = User::find($id);
-        return view('editUser', ['user' => $user]);
+        return view('user/editUser', ['user' => $user]);
     }
 
-    public function deleteUser(){
-        return view('deleteUser');
-    }
-
-    public function updateUser(Request $request, $id){
+    // save button in editUser page.
+    public function editUser(Request $request, $id){
         $user = User::find($id);
 
         $validated = $request->validate([
@@ -58,6 +61,19 @@ class userController extends Controller
         return redirect('userList')->with('success', 'User has been successfully updated.');
     }
 
+    // delete user page
+    public function showDeleteUserPage($id){
+        $user = User::find($id);
+        return view('user/deleteUser',  ['user' => $user]);
+    }
+
+    public function deleteUser($id){
+        $user = User::find($id);
+        $user->delete();
+        return redirect('userList')->with('success', 'User has been successfully deleted.');
+    }           
+
+    // to delete many users at once.
     public function deleteUsers(Request $request){
      
         $selectedUsers = $request->input('selectedUsers', []);
