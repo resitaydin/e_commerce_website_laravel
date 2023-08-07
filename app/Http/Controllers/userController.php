@@ -10,6 +10,7 @@ use App\Models\User;
 class userController extends Controller
 {
 
+    // Adds user to database.
     public function addUser(Request $request){
        
         $validated = $request->validate([
@@ -31,19 +32,17 @@ class userController extends Controller
         return view('user/addUser');
     }
 
-    // listUsers page.
     public function listUsers(){
         $allUsers = User::all();
         return view('user/listUsers', ['users' => $allUsers]);
     }
 
-    // editUser page
     public function showEditUserPage($id){
         $user = User::find($id);
         return view('user/editUser', ['user' => $user]);
     }
 
-    // save button in editUser page.
+    // Edits user and updates it on the database.
     public function editUser(Request $request, $id){
         $user = User::find($id);
 
@@ -61,7 +60,6 @@ class userController extends Controller
         return redirect('userList')->with('success', 'User has been successfully updated.');
     }
 
-    // delete user page
     public function showDeleteUserPage($id){
         $user = User::find($id);
         return view('user/deleteUser',  ['user' => $user]);
@@ -73,7 +71,7 @@ class userController extends Controller
         return redirect('userList')->with('success', 'User has been successfully deleted.');
     }           
 
-    // to delete many users at once.
+    // Soft deletes many users at once.
     public function deleteUsers(Request $request){
      
         $selectedUsers = $request->input('selectedUsers', []);

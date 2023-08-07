@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\categoryController;
 
 // logout'u get methoduyla yap.
 
@@ -26,5 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/deleteUsers',[userController::class, 'deleteUsers'] )->name('deleteUsers');
     Route::get('/deleteUser/{id}',[userController::class, 'showDeleteUserPage'])->name('showDeleteUserPage');
     Route::post('/deleteUser/{id}', [userController::class, 'deleteUser']) -> name('deleteUser');
+
+    Route::get('/addCategory',[categoryController::class, 'showAddCategoryPage'] )->name('showAddCategoryPage');
+    Route::post('/addCategory',[categoryController::class, 'addCategory'] )->name('addCategory');
 });
 
