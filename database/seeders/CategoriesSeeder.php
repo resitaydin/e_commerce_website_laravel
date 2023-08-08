@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
-class UsersSeeder extends Seeder
+class CategoriesSeeder extends Seeder
 {
     public function run()
     {
@@ -15,17 +14,17 @@ class UsersSeeder extends Seeder
                 [
                     'categoryTitle'=> 'Electronics',
                     'categoryDescription'=>  'Electronics Stuffs',
-                    'status'=> 'active',
+                    'status'=> '1',
                 ],
                 [
                     'categoryTitle'=> 'Books',
                     'categoryDescription'=>  'Books & Books',
-                    'status'=> 'active',
+                    'status'=> '0',
                 ],
                 [
                     'categoryTitle'=> 'Clothing',
                     'categoryDescription'=>  'Clothes',
-                    'status'=> 'active',
+                    'status'=> '1',
                 ]
             ]
         );

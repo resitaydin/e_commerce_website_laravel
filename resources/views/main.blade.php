@@ -19,5 +19,8 @@
 <a href="{{route('showAddCategoryPage')}}"> Add Category </a> <br>
 <a href="{{route('showCategoryListPage')}}"> List Categories </a>
 
+<p> Product Management </p>
+<a href="{{route('showAddProductPage')}}"> Add Product </a> <br>
+
 </body>
 </html>

@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\productController;
 
-// logout'u get methoduyla yap.
+
 
 Route::get('/login', function () { return view('user/login'); })->name('login');
 Route::post('/login', [authController::class, 'checkLogin'])->name('loginPost');
@@ -37,6 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/editCategory/{id}',[categoryController::class, 'editCategory']) -> name('editCategory');
 
     Route::get('/deleteCategory/{id}',[categoryController::class, 'deleteCategory']) -> name('deleteCategory');
+
+    Route::get('/addProduct',[productController::class, 'showAddproductPage'] )->name('showAddProductPage');
+    Route::post('/addProduct',[productController::class, 'addProduct'] )->name('addProduct');
+
 
 });
 
