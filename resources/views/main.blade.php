@@ -21,6 +21,7 @@
 
 <p> Product Management </p>
 <a href="{{route('showAddProductPage')}}"> Add Product </a> <br>
+<a href="{{route('showProductListPage')}}"> List Products </a>
 
 </body>
 </html>

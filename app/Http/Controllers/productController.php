@@ -28,4 +28,14 @@ class productController extends Controller
         $categories = Category::all(); 
         return view('product/addProduct', ['categories'=> $categories]); 
     }
+
+    public function listProducts(){
+        $categories = Category::all(); 
+        $allProducts = Product::all();
+        return view('product/listProducts', ['products' => $allProducts] ,['categories' => $categories]);
+    }
+
+    public function showEditProductPage(){
+        return view('product/editProduct');
+    }
 }

@@ -39,8 +39,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/deleteCategory/{id}',[categoryController::class, 'deleteCategory']) -> name('deleteCategory');
 
-    Route::get('/addProduct',[productController::class, 'showAddproductPage'] )->name('showAddProductPage');
+    Route::get('/addProduct',[productController::class, 'showAddProductPage'] )->name('showAddProductPage');
     Route::post('/addProduct',[productController::class, 'addProduct'] )->name('addProduct');
+
+    Route::get('/productList',[productController::class, 'listProducts'] )->name('showProductListPage');
+
+    Route::get('/editProduct',[productController::class, 'showEditProductPage'] )->name('showEditProductPage');
+
 
 
 });
