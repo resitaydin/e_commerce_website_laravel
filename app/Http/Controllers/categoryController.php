@@ -53,8 +53,10 @@ class categoryController extends Controller
         return view('category/editCategory', ['category' => $category]);
     }
 
-    public function showDeleteCategoryPage(){
-        return view('category/deleteCategory');
+    public function deleteCategory($id){
+        $category = category::find($id);
+        $category->delete();
+        return redirect('categoryList')->with('success', 'Category has been successfully deleted.');
     }
 
 }

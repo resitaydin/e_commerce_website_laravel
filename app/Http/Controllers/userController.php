@@ -60,11 +60,6 @@ class userController extends Controller
         return redirect('userList')->with('success', 'User has been successfully updated.');
     }
 
-    public function showDeleteUserPage($id){
-        $user = User::find($id);
-        return view('user/deleteUser',  ['user' => $user]);
-    }
-
     public function deleteUser($id){
         $user = User::find($id);
         $user->delete();

@@ -37,8 +37,8 @@
                         <td> Inactive </td>
                     @endif
                     <td><a href="{{ route('showEditCategoryPage', ['id' => $category->id]) }}">Edit</a></td>
-                    <td><a href="{{ route('showDeleteCategoryPage', ['id' => $category->id]) }}">Delete</a></td>
-                </tr>
+                    <td><a onclick="return confirm('Are you sure you want to delete {{$category->categoryTitle}} category')"
+                         href="{{route('deleteCategory',['id'=>$category->id])}} "> Delete </a></td>
                 @endforeach
             </tbody>
         </table>

@@ -36,7 +36,8 @@
                     <td>{{ $user->username }}</td>
                     <td>{{ $user->userTitle }}</td>
                     <td><a href="{{ route('showEditUserPage', ['id' => $user->id]) }}">Edit</a></td>
-                    <td><a href="{{ route('showDeleteUserPage', ['id' => $user->id]) }}">Delete</a></td>
+                    <td><a onclick="return confirm('Are you sure you want to delete {{$user->username}} ')"
+                        href="{{route('deleteUser',['id'=>$user->id])}} "> Delete </a></td>
                 </tr>
                 @endforeach
             </tbody>
