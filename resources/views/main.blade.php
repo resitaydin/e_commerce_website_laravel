@@ -16,7 +16,8 @@
 <a href="{{ route('showUserListPage') }}"> List Users </a>
 
 <p> Category Management </p>
-<a href="{{route('showAddCategoryPage')}}"> Add Category </a>
+<a href="{{route('showAddCategoryPage')}}"> Add Category </a> <br>
+<a href="{{route('showCategoryListPage')}}"> List Categories </a>
 
 </body>
 </html>
