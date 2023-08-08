@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Add User Page </title>
+    <title> Add Category Page </title>
 </head>
 
 <body>
 <div class="container">
-    <h2>Add User</h2>
+    <h2> Add Category </h2>
 
     @if($errors)
         <p> {{$errors->first()}}</p>

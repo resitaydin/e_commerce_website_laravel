@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/editUser/{id}',[userController::class, 'editUser']) -> name('editUser');
 
     Route::post('/deleteUsers',[userController::class, 'deleteUsers'] )->name('deleteUsers');
+
     Route::get('/deleteUser/{id}',[userController::class, 'showDeleteUserPage'])->name('showDeleteUserPage');
     Route::post('/deleteUser/{id}', [userController::class, 'deleteUser']) -> name('deleteUser');
 
@@ -32,8 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/addCategory',[categoryController::class, 'addCategory'] )->name('addCategory');
 
     Route::get('/categoryList',[categoryController::class, 'listCategories'] )->name('showCategoryListPage');
-    Route::get('/editCategory/{id}',[categoryController::class, 'showEditCategoryPage'] )->name('showEditCategoryPage');
 
+    Route::get('/editCategory/{id}',[categoryController::class, 'showEditCategoryPage'] )->name('showEditCategoryPage');
+    Route::put('/editCategory/{id}',[categoryController::class, 'editCategory']) -> name('editCategory');
 
     Route::get('/deleteCategory/{id}',[categoryController::class, 'showDeleteCategoryPage'] )->name('showDeleteCategoryPage');
 });

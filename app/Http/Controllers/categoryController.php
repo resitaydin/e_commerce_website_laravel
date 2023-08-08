@@ -31,9 +31,26 @@ class categoryController extends Controller
         return view('category/listCategories', ['categories' => $allCategories]);
     }
 
+    public function editCategory(Request $request, $id){
+        $category = Category::find($id);
 
-    public function showEditCategoryPage(){
-        return view('category/editCategory');
+        $validated = $request->validate([
+            'categoryTitle'      => 'required | unique:categories,categoryTitle,'.$id,  // must be unique for 'users' database to avoid duplication.
+            'categoryDescription'     => 'required',
+            'status'      => 'required',
+        ]);
+
+        // Update the category with the validated data
+        $category->update($validated);
+
+        // Redirect back to the user list page with a success message
+        return redirect('categoryList')->with('success', 'Category has been successfully updated.');
+    }
+
+
+    public function showEditCategoryPage($id){
+        $category = Category::find($id);
+        return view('category/editCategory', ['category' => $category]);
     }
 
     public function showDeleteCategoryPage(){
