@@ -12,7 +12,7 @@
             <p> {{$errors->first()}}</p>
         @endif
         <h2>Admin Panel Login Screen</h2>
-        <form action="{{ route('loginPost') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="username">Username</label>

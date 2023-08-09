@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class categoryController extends Controller
 {
+    public function showAddCategoryPage(){
+        return view('category/addCategory');
+    }
+
     public function addCategory(Request $request){
         $validated = $request->validate([
             'categoryTitle'      => 'required | unique:categories',  // must be unique for 'users' database to avoid duplication.
@@ -22,13 +27,14 @@ class categoryController extends Controller
         return redirect()->route('main')->with('success', 'Category has been successfully added.');
     }
 
-    public function showAddCategoryPage(){
-        return view('category/addCategory');
-    }
-
     public function listCategories(){
         $allCategories = Category::all();
         return view('category/listCategories', ['categories' => $allCategories]);
+    }
+
+    public function showEditCategoryPage($id){
+        $category = Category::find($id);
+        return view('category/editCategory', ['category' => $category]);
     }
 
     public function editCategory(Request $request, $id){
@@ -47,14 +53,18 @@ class categoryController extends Controller
         return redirect('categoryList')->with('success', 'Category has been successfully updated.');
     }
 
-
-    public function showEditCategoryPage($id){
-        $category = Category::find($id);
-        return view('category/editCategory', ['category' => $category]);
-    }
-
     public function deleteCategory($id){
         $category = category::find($id);
+
+        // finding all the products that have this categoryId.
+        $products = Product::where('productCategoryId', $id)->get();
+
+        // Looping through them and setting them to null.
+        foreach ($products as $product) {
+            $product->productCategoryId = null;
+            $product->save();
+        }
+
         $category->delete();
         return redirect('categoryList')->with('success', 'Category has been successfully deleted.');
     }

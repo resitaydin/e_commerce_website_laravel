@@ -27,4 +27,8 @@ class authController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function showLoginPage(){
+        return view('user/login');
+    }
 }

@@ -7,14 +7,14 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productController;
 
 
-
-Route::get('/login', function () { return view('user/login'); })->name('login');
-Route::post('/login', [authController::class, 'checkLogin'])->name('loginPost');
+Route::get('/login', [authController::class, 'showLoginPage'])->name('showLoginPage');
+Route::post('/login', [authController::class, 'checkLogin'])->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', function () { return redirect('main'); });
     Route::get('/main', function () { return view('main'); })->name('main');
+    
     Route::get('/logout', [authController::class, 'logout'])->name('logout');
 
     Route::get('/addUser', [userController::class, 'showAddUserPage'])->name('showAddUserPage');
@@ -44,8 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/productList',[productController::class, 'listProducts'] )->name('showProductListPage');
 
-    Route::get('/editProduct',[productController::class, 'showEditProductPage'] )->name('showEditProductPage');
+    Route::get('/editProduct/{id}',[productController::class, 'showEditProductPage'] )->name('showEditProductPage');
+    Route::put('/editProduct/{id}',[productController::class, 'editProduct']) -> name('editProduct');
 
+    Route::get('/deleteProduct/{id}',[productController::class, 'deleteProduct']) -> name('deleteProduct');
 
 
 });
