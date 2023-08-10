@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Validation\Rule;
+
 use App\Models\User;
 
-class userController extends Controller
+class UserController extends Controller
 {
 
     // Adds user to database.
     public function addUser(Request $request){
        
         $validated = $request->validate([
-            'username'      => 'required|alphaNum | unique:users',  // must be unique for 'users' database to avoid duplication.
+            'username' => [
+                'required', 'alpha_num',
+                Rule::unique('users')->where(function ($query) {
+                    return $query->whereNull('deleted_at');
+                }),
+            ],  // must be unique for 'users' database to avoid duplication.
             'userTitle'     => 'required',
             'password'      => 'required|min:6',
         ]);

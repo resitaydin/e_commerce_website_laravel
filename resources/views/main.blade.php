@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title> MAIN SCREEN </title>
+    <title> Home Page </title>
 </head>
 @if (session('success'))
     <div class="alert alert-success">
@@ -9,7 +9,7 @@
     @endif
 <body>
     <a href="{{ route('logout') }}"> <p align="right"> Log Out </p> </a>
-<a>  WELCOME TO MAIN SCREEN </a> <br>
+<b>  WELCOME TO THE E-COMMERCE ADMIN PANEL </b> <br>
 
 <p> User Management </p>
 <a href="{{ route('showAddUserPage') }}"> Add User </a> <br>

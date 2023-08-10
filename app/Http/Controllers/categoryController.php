@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 
-class categoryController extends Controller
+class CategoryController extends Controller
 {
     public function showAddCategoryPage(){
         return view('category/addCategory');
@@ -54,7 +54,8 @@ class categoryController extends Controller
     }
 
     public function deleteCategory($id){
-        $category = category::find($id);
+       
+        $category = Category::find($id);
 
         // finding all the products that have this categoryId.
         $products = Product::where('productCategoryId', $id)->get();

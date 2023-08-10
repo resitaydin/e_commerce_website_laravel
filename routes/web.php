@@ -5,16 +5,24 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\passwordController;
 
 
 Route::get('/login', [authController::class, 'showLoginPage'])->name('showLoginPage');
 Route::post('/login', [authController::class, 'checkLogin'])->name('login');
 
+Route::get('/forgetPassword', [passwordController::class, 'showForgetPasswordPage']) -> name('showForgetPasswordPage');
+Route::post('/forgetPassword', [passwordController::class, 'forgetPassword']) -> name('forgetPassword');
+
+Route::get('/resetPassword/{token}', [passwordController::class, 'showResetPasswordPage']) -> name('showResetPasswordPage');
+Route::post('/resetPassword/{token}', [passwordController::class, 'resetPassword']) -> name('resetPassword');
+
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', function () { return redirect('main'); });
     Route::get('/main', function () { return view('main'); })->name('main');
-    
+
     Route::get('/logout', [authController::class, 'logout'])->name('logout');
 
     Route::get('/addUser', [userController::class, 'showAddUserPage'])->name('showAddUserPage');
@@ -48,7 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/editProduct/{id}',[productController::class, 'editProduct']) -> name('editProduct');
 
     Route::get('/deleteProduct/{id}',[productController::class, 'deleteProduct']) -> name('deleteProduct');
-
 
 });
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class authController extends Controller
+
+class AuthController extends Controller
 {
     public function checkLogin(Request $request){
         $credentials = $request->validate([
@@ -29,6 +30,6 @@ class authController extends Controller
     }
 
     public function showLoginPage(){
-        return view('user/login');
+        return view('auth/login');
     }
 }
