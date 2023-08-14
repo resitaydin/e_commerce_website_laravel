@@ -17,6 +17,7 @@
     <h1>User List</h1>
     <form action="{{ route('deleteUsers') }}" method="POST">
         @csrf
+        @method ('DELETE')
         <table border="1">
             <thead>
                 <tr>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Panel Login</title>
+    <title> E-commerce Admin Panel </title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,7 +12,7 @@
             <p> {{$errors->first()}}</p>
         @endif
         
-        <h2>Admin Panel Login Screen</h2>
+        <h2> E-commerce Admin Panel </h2>
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group">
