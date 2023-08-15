@@ -70,4 +70,8 @@ class CategoryController extends Controller
         return redirect('categoryList')->with('success', 'Category has been successfully deleted.');
     }
 
+    public function showCategoryManagementPage(){
+        return view('category/categoryManagement');
+    }
+
 }

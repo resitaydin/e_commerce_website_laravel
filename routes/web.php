@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/deleteUsers','deleteUsers' )->name('deleteUsers');
 
         Route::get('/deleteUser/{id}', 'deleteUser') -> name('deleteUser');
+        Route::get('/userManagement', 'showUserManagementPage') -> name('showUserManagementPage');
     });
 
     Route::controller(CategoryController::class)->group(function () {
@@ -54,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/editCategory/{id}','editCategory') -> name('editCategory');
 
         Route::get('/deleteCategory/{id}','deleteCategory') -> name('deleteCategory');
+        Route::get('/categoryManagement', 'showCategoryManagementPage') -> name('showCategoryManagementPage');
     });
 
     Route::controller(ProductController::class)->group(function () {
@@ -67,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/editProduct/{id}', 'editProduct') -> name('editProduct');
 
         Route::get('/deleteProduct/{id}', 'deleteProduct') -> name('deleteProduct');
+        Route::get('/productManagement', 'showProductManagementPage') -> name('showProductManagementPage');
     });
     
 });

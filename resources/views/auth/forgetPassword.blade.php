@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <title>Forget Password</title>
+    <!-- Include your Bootstrap CSS link here -->
+    <link rel="stylesheet" href="{{asset('../assets/css/styles.min.css')}} ">
+</head>
+
 <body>
-    <div class="container">
+    <div class="container mt-5">
         @if (session('success'))
-        <div class="alert alert-success"> {{ session('success') }} </div> @endif
+        <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
         @if (session('error'))
-        <div class="alert alert-danger"> {{ session('error') }} </div> @endif
+        <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
 
-        <p> We will send a link to your email, use that link to reset your password.</p>
+        <h2>Reset Password</h2>
+        <p>We will send a link to your email, use that link to reset your password.</p>
         <form action="{{ route('forgetPassword') }}" method="POST">
             @csrf
-                <label for="email">Email address </label> <br>
-                <input type="email" id="email" name="email" class="form-control"> <br>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" id="email" name="email" class="form-control">
+            </div>
 
-                <label for="username">Username</label> <br>
-                <input type="text" id="username" name="username" class="form-control"> <br>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
 
-            <input type="submit" value="Submit" name="submit">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        @if($errors)
-        <p> {{$errors->first()}}</p>
-        
-    @endif
+
+        @if($errors->any())
+        <div class="alert alert-danger mt-3">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </div>
-    </body>
-    
+
+    <!-- Include your Bootstrap JS script here -->
+    <script src="{{asset('../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}} "></script>
+</body>
+
 </html>

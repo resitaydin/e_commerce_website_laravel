@@ -72,4 +72,8 @@ class ProductController extends Controller
         $product->delete();
         return redirect('productList')->with('success', 'Product has been successfully deleted.');
     }
+
+    public function showProductManagementPage(){
+        return view('product/productManagement');
+    }
 }

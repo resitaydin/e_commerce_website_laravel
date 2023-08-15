@@ -83,4 +83,8 @@ class UserController extends Controller
        return redirect()->back();
 
     }
+
+    public function showUserManagementPage(){
+        return view('user/userManagement');
+    }
 }
